@@ -4,6 +4,7 @@
  */
 package bloodtestscheduler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,8 +12,8 @@ import java.util.ArrayList;
  * @author jordancarthy 14/03/2025 PQPatient 1.0
  */
 //We will override the abstract methods by implementing the PQInterface
-public class PQPatient implements PQInterface {
-   
+public class PQPatient implements PQInterface, Serializable {
+
     // create instance of PQ with ArrayList with generic of our patient
     ArrayList<Patient> patientList;
 
@@ -40,12 +41,16 @@ public class PQPatient implements PQInterface {
     }
 
     // Will need to implement a method for inserting based on priority was going to use comparator but for the cause of understanding insertion will implement a  different method similar to one displayed in class , // The current index I will put at the end of the list since im only working with three priorities and to ensure that the FIFO structure holds I will iterate backwards
-    public int findPriorityPos(int tempKey) {
+    public int findPriorityPos(int tempKey, int ageKey, String status) {
         Patient temp;
         int currentIndex = patientList.size() - 1;// we will start at last item
         while (currentIndex >= 0) {
             temp = patientList.get(currentIndex); // assigning temp to last 
             if (temp.getPriority() > tempKey) { // checking priority of tempkey later
+                currentIndex--;
+            } else if (temp.getPriority() == tempKey && temp.getAge() < ageKey) {
+                currentIndex--;
+            } else if (temp.getPriority() == tempKey && temp.getAge() == ageKey && status.equals("true") && temp.getHospitalWard().equals("false")) {
                 currentIndex--;
             } else {
                 return currentIndex + 1; // this ensures its added after the one that is equal
@@ -55,11 +60,11 @@ public class PQPatient implements PQInterface {
     }
 
     // adding to the queue based off priority
-    public void enqueue(int priorityKey, Patient thisPatient) {
+    public void enqueue(int priorityKey,int ageKey,String status, Patient thisPatient) {
         // Create temp patient filling out default,
         // used idea from class code due to uncertainty of how it will perform in the GUI @author E.Thornbury
-        Patient temp = new Patient(thisPatient.getName(), thisPatient.getAge(), priorityKey, thisPatient.getGpName());
-        int index = findPriorityPos(priorityKey);
+        Patient temp = new Patient(thisPatient.getName(), thisPatient.getAge(), thisPatient.getPriority(),thisPatient.getHospitalWard(), thisPatient.getGpName());
+        int index = findPriorityPos(priorityKey,ageKey,status);
         if (index > size()) {
             patientList.add(temp);
         } else {

@@ -48,6 +48,8 @@
                                   <Component id="priorityTf" alignment="0" max="32767" attributes="0"/>
                                   <Component id="nameTf" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="hospitalCheck" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="priorityLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -76,7 +78,10 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="nameLbl" min="-2" max="-2" attributes="0"/>
-                  <Component id="nameTf" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nameTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="hospitalCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -175,6 +180,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="hospitalCheck">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hospital Ward"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

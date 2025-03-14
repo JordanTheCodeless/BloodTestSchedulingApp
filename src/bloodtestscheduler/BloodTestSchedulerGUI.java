@@ -4,6 +4,12 @@
  */
 package bloodtestscheduler;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +24,14 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     // Declare instance of my Priority Queue
     PQPatient priorityQueue;
     // Declare my variables for a patient
-    String name, gpName;
+    String name, gpName, hospitalWard;
     int age, priority;
     
     
     public BloodTestSchedulerGUI() {
         initComponents();
         priorityQueue = new PQPatient();
+        loadFile();
     }
 
     /**
@@ -49,6 +56,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         gpNameTf = new javax.swing.JTextField();
         addPatientBtn = new javax.swing.JButton();
         displayBtn = new javax.swing.JButton();
+        hospitalCheck = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +95,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
+        hospitalCheck.setText("Hospital Ward");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +121,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                                     .addComponent(gpNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                     .addComponent(ageTf, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(priorityTf)
-                                    .addComponent(nameTf)))
+                                    .addComponent(nameTf))
+                                .addGap(59, 59, 59)
+                                .addComponent(hospitalCheck))
                             .addComponent(priorityLbl)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(72, 72, 72)
@@ -131,7 +143,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameLbl)
-                    .addComponent(nameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hospitalCheck)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ageLbl)
@@ -159,7 +173,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private void addPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientBtnActionPerformed
         // Checking inputs first and type checking for smoothness
         if(nameTf.getText().isEmpty() || ageTf.getText().isEmpty() || priorityTf.getText().isEmpty() || gpNameTf.getText().isEmpty()){
-            displayTa.append("Dont leave any fields empty");
+            JOptionPane.showMessageDialog(null,"Dont leave any fields empty");
         }else if((!priorityTf.getText().equalsIgnoreCase("high")) && (!priorityTf.getText().equalsIgnoreCase("medium")) && (!priorityTf.getText().equalsIgnoreCase("low"))){
             JOptionPane.showMessageDialog(null,"Please enter priority as either High,Medium or Low");    
         }else{
@@ -176,16 +190,58 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 priority = 3;
             }
             
-            Patient temp = new Patient(name,age,priority,gpName);
-            priorityQueue.enqueue(priority,temp);
+            if(hospitalCheck.isSelected()){
+                hospitalWard = "true";
+            }else{
+                hospitalWard ="false";
+            }
+            
+            Patient temp = new Patient(name,age,priority,hospitalWard,gpName);
+            priorityQueue.enqueue(priority,age,hospitalWard,temp);
             System.out.println(temp.printPatient());
-            System.out.println(priorityQueue.toString());
-            displayTa.append("Patient successfully added");
+            clearFields();
+            displayTa.append("Patient successfully added\n");
             // adding to file implementation
+            File f;
+            FileOutputStream fStream;
+            ObjectOutputStream oStream;
+            try{
+                f = new File("patients.dat");
+                fStream = new FileOutputStream(f);
+                oStream = new ObjectOutputStream(fStream);
+                   // I figured this out by playing around  in the below loadFile method where I needed to cast the ArrayList as type class, not too sure why it wouldnt just write as (PriorityQueue) but it now successfully reads and writes 
+                   //** Now understand that it is type casting 
+                oStream.writeObject((PQPatient)(priorityQueue));
+                
+            }catch(IOException e){
+                        System.out.println(e);
+                        }
             
         }
     }//GEN-LAST:event_addPatientBtnActionPerformed
-
+    private void clearFields(){
+        nameTf.setText("");
+        ageTf.setText("");
+        priorityTf.setText("");
+        gpNameTf.setText("");
+        hospitalCheck.setSelected(false);
+    }
+    
+    private void loadFile(){
+        // This will be a method to retrieve all Patients for the queue
+        File f;
+        FileInputStream fStream;
+        ObjectInputStream oStream;
+        try{
+            f = new File("patients.dat");
+            fStream = new FileInputStream(f);
+            oStream = new ObjectInputStream(fStream);
+            // Had trouble with this here was trying arrayList casting but needed to remove     Serialization  from just patient and read it as the class it actually belongs
+            priorityQueue = (PQPatient)oStream.readObject();
+        }catch(IOException | ClassNotFoundException e){
+            System.out.println(e);
+        }
+    }
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
         // TODO add your handling code here:
         displayTa.append(priorityQueue.displayQ());
@@ -239,6 +295,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea displayTa;
     private javax.swing.JLabel gpNameLbl;
     private javax.swing.JTextField gpNameTf;
+    private javax.swing.JCheckBox hospitalCheck;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mainTitleLbl;
     private javax.swing.JLabel nameLbl;

@@ -12,10 +12,11 @@ package bloodtestscheduler;
  */
 public interface PQInterface {
     //Interface will hold the methods the PriorityQueue will need to implement
-    public void enqueue(int priority, Patient element);// Add to queue
+    public void enqueue(int priority,int age, String status, Patient element);// Add to queue
     public int size(); // check queue size
     public boolean isEmpty(); 
     public Object dequeue(); // remove from front of queue
     public String displayQ(); // print queue
+    
     
 }

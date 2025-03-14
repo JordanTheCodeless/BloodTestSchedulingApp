@@ -16,13 +16,15 @@ public class Patient implements Serializable {
     // Declare my variables for patient 
     private String name, gpName;
     private int age, priority;
+    private  String hospitalWard;
 
     // Create my Constructor 
-    public Patient(String name, int age, int priority, String gpName) {
+    public Patient(String name, int age, int priority,String hospitalWard, String gpName) {
         this.name = name;
         this.age = age;
         this.priority = priority;
         this.gpName = gpName;
+        this.hospitalWard = hospitalWard;
     }
     // Getters + setters most important *getPriority()*
 
@@ -33,7 +35,7 @@ public class Patient implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public String getGpName() {
         return gpName;
     }
@@ -57,6 +59,12 @@ public class Patient implements Serializable {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+    public void setHospitalWard(String hospitalWard){
+        this.hospitalWard = hospitalWard;// Couldnt put this.hospitalWard didnt get any info from netbeans either to check documentation
+    }
+    public String getHospitalWard(){
+        return hospitalWard;
+    }
     // Method to out put string , Currently have priority as an int for Comparison in pQueue.
     public String priorityToString() {
         if (priority == 1) {
@@ -64,12 +72,12 @@ public class Patient implements Serializable {
         } else if (priority == 2) {
             return "Medium";
         } else {
-            return "low";
+            return "Low";
         }
     }
 //    Print Patient will use line breaks for readability in gui
     public String printPatient(){
-        return "Patient : " + name + "\nAge : " + age + "\nPriority : " + priorityToString() + "\nGP : " + gpName + "\n";
+        return "Patient : " + name + "\nAge : " + age + "\nPriority : " + priorityToString() + "\nHospital Bound : " + hospitalWard + "\nGP : " + gpName + "\n";
     }
 
 }
