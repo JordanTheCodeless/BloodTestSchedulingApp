@@ -14,7 +14,8 @@ public class BloodTestSchedulerApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        BloodTestSchedulerGUI mainGui = new BloodTestSchedulerGUI();
+        mainGui.setVisible(true);
     }
     
 }
