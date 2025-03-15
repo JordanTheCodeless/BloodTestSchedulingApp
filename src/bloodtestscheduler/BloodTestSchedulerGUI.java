@@ -31,7 +31,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     public BloodTestSchedulerGUI() {
         initComponents();
         priorityQueue = new PQPatient();
-        loadFile();
+        loadFile();// Method to add patients from file to PQueue.
     }
 
     /**
@@ -178,10 +178,17 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Please enter priority as either High,Medium or Low");    
         }else{
             // Here I will create the temp Object and try add to file not sure about how I have Serialization set up if it will work with just Patient or i may need to implement it into the Queue class itself
+                    /*Side note figured it out i Would need to make the make the PQPatient class Serializable*/
             name = nameTf.getText();
-            age = Integer.parseInt(ageTf.getText());
             gpName = gpNameTf.getText();
-            
+            // try catch block for NumberFormat
+            try{
+                age = Integer.parseInt(ageTf.getText());
+            }catch(NumberFormatException e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Age must be a number");
+            }
+            // Checking text and returning priority based on that
             if(priorityTf.getText().equalsIgnoreCase("high")){
                 priority = 1;
             }else if(priorityTf.getText().equalsIgnoreCase("medium")){
