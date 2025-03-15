@@ -56,13 +56,18 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="414" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="414" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="addPatientBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="addPatientBtn" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="displayAllPatientsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -98,12 +103,17 @@
                   <Component id="gpNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="gpNameTf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="displayBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="displayAllPatientsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -184,6 +194,19 @@
     <Component class="javax.swing.JCheckBox" name="hospitalCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hospital Ward"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="displayAllPatientsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View All Patients"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAllPatientsBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add to no show"/>
       </Properties>
     </Component>
   </SubComponents>

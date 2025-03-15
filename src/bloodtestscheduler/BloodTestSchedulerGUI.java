@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +22,12 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     /**
      * Creates new form BloodTestSchedulerGUI
      */
+    //Creating ArrayList of All patients that have requested appointment 
+    ArrayList <Patient> allPatients;
     // Declare instance of my Priority Queue
     PQPatient priorityQueue;
+    // Declare instance of Quueue
+    StackNoShows theNoShowers;
     // Declare my variables for a patient
     String name, gpName, hospitalWard;
     int age, priority;
@@ -30,8 +35,10 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     
     public BloodTestSchedulerGUI() {
         initComponents();
+        allPatients = new ArrayList<>();
         priorityQueue = new PQPatient();
-        loadFile();// Method to add patients from file to PQueue.
+        theNoShowers = new StackNoShows();
+        loadFile();// Method to add patients from file to PQueue and other lists.
     }
 
     /**
@@ -57,6 +64,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         addPatientBtn = new javax.swing.JButton();
         displayBtn = new javax.swing.JButton();
         hospitalCheck = new javax.swing.JCheckBox();
+        displayAllPatientsBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +106,15 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
         hospitalCheck.setText("Hospital Ward");
 
+        displayAllPatientsBtn.setText("View All Patients");
+        displayAllPatientsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAllPatientsBtnActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Add to no show");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,12 +145,16 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                             .addComponent(priorityLbl)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(72, 72, 72)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addPatientBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(displayBtn)))))
+                            .addComponent(addPatientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(displayAllPatientsBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(displayBtn))))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,11 +180,15 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gpNameLbl)
                     .addComponent(gpNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPatientBtn)
                     .addComponent(displayBtn))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayAllPatientsBtn)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -204,6 +230,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
             
             Patient temp = new Patient(name,age,priority,hospitalWard,gpName);
+            //Adding to patient record
+            allPatients.add(temp);
+//            Adding to priority Queue
             priorityQueue.enqueue(priority,age,hospitalWard,temp);
             System.out.println(temp.printPatient());
             clearFields();
@@ -219,6 +248,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                    // I figured this out by playing around  in the below loadFile method where I needed to cast the ArrayList as type class, not too sure why it wouldnt just write as (PriorityQueue) but it now successfully reads and writes 
                    //** Now understand that it is type casting 
                 oStream.writeObject((PQPatient)(priorityQueue));
+                oStream.writeObject(allPatients);
                 
             }catch(IOException e){
                         System.out.println(e);
@@ -245,6 +275,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             oStream = new ObjectInputStream(fStream);
             // Had trouble with this here was trying arrayList casting but needed to remove     Serialization  from just patient and read it as the class it actually belongs
             priorityQueue = (PQPatient)oStream.readObject();
+            allPatients = (ArrayList<Patient>)oStream.readObject();
         }catch(IOException | ClassNotFoundException e){
             System.out.println(e);
         }
@@ -258,6 +289,22 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private void priorityTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priorityTfActionPerformed
+
+    private void displayAllPatientsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAllPatientsBtnActionPerformed
+        // TODO add your handling code here:
+        if(!allPatients.isEmpty()){
+        displayTa.append("\n--------------- All Patients -------------------\n");
+        String list = "";
+        for(Patient temp : allPatients){
+            list += temp.basicPrint() + "\n-------------------------\n";
+            
+        }
+        displayTa.append(list);
+        
+        }else{
+            displayTa.append("Nothing to currently display directory is empty");
+        }
+    }//GEN-LAST:event_displayAllPatientsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,11 +345,13 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JButton addPatientBtn;
     private javax.swing.JLabel ageLbl;
     private javax.swing.JTextField ageTf;
+    private javax.swing.JButton displayAllPatientsBtn;
     private javax.swing.JButton displayBtn;
     private javax.swing.JTextArea displayTa;
     private javax.swing.JLabel gpNameLbl;
     private javax.swing.JTextField gpNameTf;
     private javax.swing.JCheckBox hospitalCheck;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mainTitleLbl;
     private javax.swing.JLabel nameLbl;
