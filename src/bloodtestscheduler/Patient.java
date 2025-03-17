@@ -9,6 +9,7 @@ import java.io.Serializable;
 /**
  *
  * @author jordancarthy
+ * 
  */
 /*save patients by making Patient Serializable*/
 public class Patient implements Serializable {

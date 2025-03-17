@@ -86,7 +86,7 @@ public class PQPatient implements PQInterface, Serializable {
             return "\nNo patients to display currently";
         } else {
             for (Patient temp : patientList) {
-                displayString += temp.printPatient();
+                displayString += "\n----------\n" + temp.printPatient()+"\n";
             }
             return displayString;
         }

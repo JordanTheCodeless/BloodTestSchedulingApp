@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jordancarthy
+ * @author jordancarthy 14/03/2024 BloodTestSchedulerGUI
  */
 public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
@@ -67,7 +67,6 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         displayBtn = new javax.swing.JButton();
         hospitalCheck = new javax.swing.JCheckBox();
         displayAllPatientsBtn = new javax.swing.JButton();
-        addNoShow = new javax.swing.JButton();
         noShowLastFiveButton = new javax.swing.JButton();
         peekBtn = new javax.swing.JButton();
         mediumRBtn = new javax.swing.JRadioButton();
@@ -118,13 +117,6 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
-        addNoShow.setText("Add to no show");
-        addNoShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNoShowActionPerformed(evt);
-            }
-        });
-
         noShowLastFiveButton.setText("Show Previous No Shows");
         noShowLastFiveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +158,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
-        pollBtn.setText("Take next Patient");
+        pollBtn.setText("Process Next Patient");
         pollBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pollBtnActionPerformed(evt);
@@ -207,16 +199,14 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(pollBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addPatientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peekBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(displayBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(addPatientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(peekBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(displayBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(displayAllPatientsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(noShowLastFiveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addNoShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(emptyStackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
@@ -258,27 +248,22 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gpNameLbl)
                     .addComponent(gpNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PQLbl)
-                            .addComponent(ArrayListLbl)
-                            .addComponent(StackLbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(displayAllPatientsBtn)
-                            .addComponent(addPatientBtn)
-                            .addComponent(noShowLastFiveButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pollBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(displayBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addNoShow)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emptyStackBtn)))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PQLbl)
+                    .addComponent(ArrayListLbl)
+                    .addComponent(StackLbl))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayAllPatientsBtn)
+                    .addComponent(addPatientBtn)
+                    .addComponent(noShowLastFiveButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pollBtn)
+                    .addComponent(emptyStackBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(displayBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peekBtn)
                 .addGap(26, 26, 26)
@@ -415,6 +400,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     }
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
         // TODO add your handling code here:
+        displayTa.setText("--------- Queue of Patients -------------");
         displayTa.append(priorityQueue.displayQ());
         System.out.println(priorityQueue.displayQ());
     }//GEN-LAST:event_displayBtnActionPerformed
@@ -435,50 +421,18 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_displayAllPatientsBtnActionPerformed
 
-    private void addNoShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoShowActionPerformed
-        // TODO add your handling code here:
-        //This button will not only push to the stack but will also poll/dequeue the PriorityQueue
-        Patient temp = priorityQueue.poll();
-        displayTa.append("Patient removed from queue\n");
-        System.out.println(temp);
-        theNoShowers.push(temp);
-        displayTa.append("Patient Added to NoShowList\n");
-        
-        File f;
-        FileOutputStream fStream;
-        ObjectOutputStream oStream;
-        try{
-            f = new File("priority.dat");
-            fStream = new FileOutputStream(f);
-            oStream = new ObjectOutputStream(fStream);
-        // will write to file 
-            oStream.writeObject(priorityQueue);
-            oStream.close();
-        }catch(IOException e){
-            System.out.println(e);
-        }
-        try{
-            f = new File("noShows.dat");
-            fStream = new FileOutputStream(f);
-            oStream = new ObjectOutputStream(fStream);
-        // will write to file 
-            oStream.writeObject(theNoShowers);
-            oStream.close();
-        }catch(IOException e){
-            System.out.println(e);
-        }
-        
-    }//GEN-LAST:event_addNoShowActionPerformed
-
     private void peekBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peekBtnActionPerformed
-       displayTa.append("-----------------Peeking----------------\nNext patient in line " + priorityQueue.peek().getName()); 
+       displayTa.append("-----------------Peeking----------------\nNext patient in line " + priorityQueue.peek().getName()+"\n"); 
     }//GEN-LAST:event_peekBtnActionPerformed
 
     private void noShowLastFiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noShowLastFiveButtonActionPerformed
         // TODO add your handling code here:
+        if(!theNoShowers.isEmpty()){
         String concat = theNoShowers.lastFiveNoShows(0);
         displayTa.append(concat);
-        
+        }else{
+            displayTa.append("No show stack currently empty");
+        }
     }//GEN-LAST:event_noShowLastFiveButtonActionPerformed
 
     private void emptyStackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyStackBtnActionPerformed
@@ -508,13 +462,18 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void pollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pollBtnActionPerformed
         // TODO add your handling code here:
+        File f;
+        FileOutputStream fStream;
+        ObjectOutputStream oStream;
+        
+        
+        String decision = JOptionPane.showInputDialog(null,priorityQueue.peek().printPatient() + "\nHas the user showed for their appointment ?\n`Yes` or `No` ?");
+        if(decision.equalsIgnoreCase("yes")){
         displayTa.append("Patient has been seen to " + priorityQueue.peek().getName()+"\n");
         priorityQueue.poll();
         displayTa.append("\nPatient was co-operative\nQueue is now " + priorityQueue.size() + " patients long");
         // File writing update
-        File f;
-        FileOutputStream fStream;
-        ObjectOutputStream oStream;
+        
         try{
             f = new File("priority.dat");
             fStream = new FileOutputStream(f);
@@ -525,7 +484,33 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         }catch(IOException e){
             System.out.println(e);
         }
-        
+        }else if(decision.equalsIgnoreCase("no")){
+            displayTa.append("\nPatient " + priorityQueue.peek().getName() + "has been added to No show");
+           Patient temp = priorityQueue.poll();// remove from queue and add to no shows
+           theNoShowers.push(temp);
+           try{
+            f = new File("priority.dat");
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+        // will write to file 
+            oStream.writeObject(priorityQueue);
+            oStream.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        try{
+            f = new File("noShows.dat");
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+        // will write to file 
+            oStream.writeObject(theNoShowers);
+            oStream.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }}
+        else{
+                 decision = JOptionPane.showInputDialog(null,priorityQueue.peek().printPatient() + "\nHas the user showed for their appointment ?\n`Yes` or `No` ?"); 
+                }
     }//GEN-LAST:event_pollBtnActionPerformed
 
     /**
@@ -567,7 +552,6 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel ArrayListLbl;
     private javax.swing.JLabel PQLbl;
     private javax.swing.JLabel StackLbl;
-    private javax.swing.JButton addNoShow;
     private javax.swing.JButton addPatientBtn;
     private javax.swing.JLabel ageLbl;
     private javax.swing.JTextField ageTf;

@@ -62,18 +62,15 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="pollBtn" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="addPatientBtn" max="32767" attributes="0"/>
-                                      <Component id="peekBtn" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="displayBtn" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="addPatientBtn" max="32767" attributes="0"/>
+                                  <Component id="peekBtn" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="displayBtn" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="displayAllPatientsBtn" min="-2" pref="179" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="noShowLastFiveButton" max="32767" attributes="0"/>
-                                  <Component id="addNoShow" alignment="0" max="32767" attributes="0"/>
                                   <Component id="emptyStackBtn" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -131,32 +128,25 @@
                   <Component id="gpNameLbl" min="-2" max="-2" attributes="0"/>
                   <Component id="gpNameTf" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="PQLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ArrayListLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="StackLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="displayAllPatientsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="noShowLastFiveButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pollBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addNoShow" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emptyStackBtn" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="PQLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ArrayListLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="StackLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="displayAllPatientsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noShowLastFiveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pollBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="emptyStackBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="peekBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -240,14 +230,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAllPatientsBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="addNoShow">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Add to no show"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNoShowActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="noShowLastFiveButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Show Previous No Shows"/>
@@ -327,7 +309,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="pollBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Take next Patient"/>
+        <Property name="text" type="java.lang.String" value="Process Next Patient"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pollBtnActionPerformed"/>

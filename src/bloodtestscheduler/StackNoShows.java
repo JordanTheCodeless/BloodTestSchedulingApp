@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jordancarthy
+ * @author jordancarthy 14/03/2024 StackNoShows 1.0
  */
-public class StackNoShows implements StackInterface, Serializable{
+public class StackNoShows implements StackInterface, Serializable {
 
     // Will make it an array list of type Patient
     public ArrayList<Patient> noShowers;
@@ -42,7 +42,6 @@ public class StackNoShows implements StackInterface, Serializable{
         noShowers.add(0, newItem);
     }
 
- 
     @Override
     public Object pop() {
         if (!noShowers.isEmpty()) {
@@ -53,28 +52,27 @@ public class StackNoShows implements StackInterface, Serializable{
     }
 
     public String emptyStack() {
-        String concat ="";
+        String concat = "";
         while (!noShowers.isEmpty()) {
-           concat +=  "Popping " + noShowers.get(0).getName() + "\n";
-           pop();
+            concat += "Popping " + noShowers.get(0).getName() + "\n";
+            pop();
 
         }
         return concat;
-        
+
     }
-    public String lastFiveNoShows(int n){
-         String concat;
+
+    public String lastFiveNoShows(int n) {
+        String concat;
+
         // Base cases 
-        if(noShowers.isEmpty() || n >= noShowers.size() || n >=5){
-            return "";
-        }else {
-           concat = noShowers.get(n).printPatient() + lastFiveNoShows(n+1);
-             
+        if (noShowers.isEmpty() || n >= noShowers.size() || n >= 5 || noShowers.get(n) == null) {
+            concat = "";
+        } else {
+            concat = noShowers.get(n).printPatient() + "---------- no show " + n + "-------" + lastFiveNoShows(n + 1);
+
         }
         return concat;
     }
-
-   
-   
 
 }
