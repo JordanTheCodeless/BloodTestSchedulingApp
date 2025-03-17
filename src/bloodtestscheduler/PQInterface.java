@@ -12,10 +12,15 @@ package bloodtestscheduler;
  */
 public interface PQInterface {
     //Interface will hold the methods the PriorityQueue will need to implement
-    public void enqueue(int priority,int age, String status, Patient element);// Add to queue
+    
+/*    https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html */
+    
+    
+    public void add(int priority,int age, String status, Patient element);// Add to queue
     public int size(); // check queue size
     public boolean isEmpty(); 
-    public Object dequeue(); // remove from front of queue
+    public Patient poll(); // remove from front of queue
+    public Patient peek();
     public String displayQ(); // print queue
     
     

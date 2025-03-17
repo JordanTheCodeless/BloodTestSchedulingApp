@@ -32,7 +32,7 @@ public class PQPatient implements PQInterface, Serializable {
     }
 
     // Will need to remove the object from the front of the queue
-    public Patient dequeue() {
+    public Patient poll() {
         if (!patientList.isEmpty()) {
             return patientList.remove(0);
         } else {
@@ -50,7 +50,7 @@ public class PQPatient implements PQInterface, Serializable {
                 currentIndex--;
             } else if (temp.getPriority() == tempKey && temp.getAge() < ageKey) {
                 currentIndex--;
-            } else if (temp.getPriority() == tempKey && temp.getAge() == ageKey && status.equals("true") && temp.getHospitalWard().equals("false")) {
+            } else if (temp.getPriority() == tempKey && temp.getAge() == ageKey && status.equals("true")) {
                 currentIndex--;
             } else {
                 return currentIndex + 1; // this ensures its added after the one that is equal
@@ -60,7 +60,7 @@ public class PQPatient implements PQInterface, Serializable {
     }
 
     // adding to the queue based off priority
-    public void enqueue(int priorityKey,int ageKey,String status, Patient thisPatient) {
+    public void add(int priorityKey,int ageKey,String status, Patient thisPatient) {
         // Create temp patient filling out default,
         // used idea from class code due to uncertainty of how it will perform in the GUI @author E.Thornbury
         Patient temp = new Patient(thisPatient.getName(), thisPatient.getAge(), thisPatient.getPriority(),thisPatient.getHospitalWard(), thisPatient.getGpName());
@@ -71,7 +71,14 @@ public class PQPatient implements PQInterface, Serializable {
             patientList.add(index, temp);
         }
     }
-
+    @Override
+    public Patient peek(){
+        if(!patientList.isEmpty()){
+        return patientList.get(0);
+        }else{
+            return null;
+        }
+    }
     //Will display message with this method 
     public String displayQ() {
         String displayString = "";

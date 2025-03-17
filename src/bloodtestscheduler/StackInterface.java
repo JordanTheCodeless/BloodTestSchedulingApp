@@ -12,9 +12,8 @@ public interface StackInterface {
     //This is the Stack interface that will hold the methods for the Stack 
     public boolean isEmpty();
     public Object pop();
-    public Object recursivePop(int n);// will use this recursive method
     public boolean isFull();
-    public void push(Object newItem);
+    public void push(Patient newItem);
     public int size();
     
         

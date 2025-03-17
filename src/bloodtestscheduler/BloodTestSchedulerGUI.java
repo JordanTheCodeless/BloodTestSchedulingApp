@@ -38,7 +38,10 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         allPatients = new ArrayList<>();
         priorityQueue = new PQPatient();
         theNoShowers = new StackNoShows();
-        loadFile();// Method to add patients from file to PQueue and other lists.
+        loadPatientHistory();// Method to add patients from file to PQueue and other lists.
+        loadPatientPriority();
+        loadNoShowers();
+        lowRBtn.setSelected(true);
     }
 
     /**
@@ -50,22 +53,32 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayTa = new javax.swing.JTextArea();
         mainTitleLbl = new javax.swing.JLabel();
         nameLbl = new javax.swing.JLabel();
         ageLbl = new javax.swing.JLabel();
-        priorityLbl = new javax.swing.JLabel();
         gpNameLbl = new javax.swing.JLabel();
         nameTf = new javax.swing.JTextField();
         ageTf = new javax.swing.JTextField();
-        priorityTf = new javax.swing.JTextField();
         gpNameTf = new javax.swing.JTextField();
         addPatientBtn = new javax.swing.JButton();
         displayBtn = new javax.swing.JButton();
         hospitalCheck = new javax.swing.JCheckBox();
         displayAllPatientsBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addNoShow = new javax.swing.JButton();
+        noShowLastFiveButton = new javax.swing.JButton();
+        peekBtn = new javax.swing.JButton();
+        mediumRBtn = new javax.swing.JRadioButton();
+        lowRBtn = new javax.swing.JRadioButton();
+        urgentRBtn = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        PQLbl = new javax.swing.JLabel();
+        ArrayListLbl = new javax.swing.JLabel();
+        StackLbl = new javax.swing.JLabel();
+        emptyStackBtn = new javax.swing.JButton();
+        pollBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,15 +93,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
         ageLbl.setText("Age :");
 
-        priorityLbl.setText("Priority :");
-
         gpNameLbl.setText("GP Name :");
-
-        priorityTf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priorityTfActionPerformed(evt);
-            }
-        });
 
         addPatientBtn.setText("Add Patient to Queue");
         addPatientBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,49 +118,120 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Add to no show");
+        addNoShow.setText("Add to no show");
+        addNoShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNoShowActionPerformed(evt);
+            }
+        });
+
+        noShowLastFiveButton.setText("Show Previous No Shows");
+        noShowLastFiveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noShowLastFiveButtonActionPerformed(evt);
+            }
+        });
+
+        peekBtn.setText("Peek Next Patient");
+        peekBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                peekBtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(mediumRBtn);
+        mediumRBtn.setText("Medium");
+
+        buttonGroup1.add(lowRBtn);
+        lowRBtn.setText("Low");
+
+        buttonGroup1.add(urgentRBtn);
+        urgentRBtn.setText("Urgent");
+
+        jLabel1.setText("Priority : ");
+
+        PQLbl.setFont(new java.awt.Font("Helvetica Neue", 2, 14)); // NOI18N
+        PQLbl.setText("PriorityQueue :");
+
+        ArrayListLbl.setFont(new java.awt.Font("Helvetica Neue", 2, 14)); // NOI18N
+        ArrayListLbl.setText("ArrayList :");
+
+        StackLbl.setFont(new java.awt.Font("Helvetica Neue", 2, 14)); // NOI18N
+        StackLbl.setText("Stack:");
+
+        emptyStackBtn.setText("Empty No Show Stack");
+        emptyStackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emptyStackBtnActionPerformed(evt);
+            }
+        });
+
+        pollBtn.setText("Take next Patient");
+        pollBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pollBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mainTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ageLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(gpNameLbl))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(gpNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                    .addComponent(ageTf, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(priorityTf)
+                                    .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ageLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ageTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                     .addComponent(nameTf))
                                 .addGap(59, 59, 59)
                                 .addComponent(hospitalCheck))
-                            .addComponent(priorityLbl)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(urgentRBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(mediumRBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(lowRBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(gpNameLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(gpNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pollBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(addPatientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(peekBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(displayBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(displayAllPatientsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(noShowLastFiveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addNoShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(emptyStackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(mainTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PQLbl)
+                                .addGap(92, 92, 92)
+                                .addComponent(ArrayListLbl)
+                                .addGap(140, 140, 140)
+                                .addComponent(StackLbl))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addPatientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(displayAllPatientsBtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(displayBtn))))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,24 +248,41 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ageLbl)
                     .addComponent(ageTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(urgentRBtn)
+                    .addComponent(mediumRBtn)
+                    .addComponent(lowRBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priorityLbl)
-                    .addComponent(priorityTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gpNameLbl)
                     .addComponent(gpNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPatientBtn)
-                    .addComponent(displayBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(displayAllPatientsBtn)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PQLbl)
+                            .addComponent(ArrayListLbl)
+                            .addComponent(StackLbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(displayAllPatientsBtn)
+                            .addComponent(addPatientBtn)
+                            .addComponent(noShowLastFiveButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pollBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(displayBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addNoShow)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emptyStackBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(peekBtn)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -198,10 +291,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void addPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientBtnActionPerformed
         // Checking inputs first and type checking for smoothness
-        if(nameTf.getText().isEmpty() || ageTf.getText().isEmpty() || priorityTf.getText().isEmpty() || gpNameTf.getText().isEmpty()){
+        if(nameTf.getText().isEmpty() || ageTf.getText().isEmpty() || gpNameTf.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Dont leave any fields empty");
-        }else if((!priorityTf.getText().equalsIgnoreCase("high")) && (!priorityTf.getText().equalsIgnoreCase("medium")) && (!priorityTf.getText().equalsIgnoreCase("low"))){
-            JOptionPane.showMessageDialog(null,"Please enter priority as either High,Medium or Low");    
+        
         }else{
             // Here I will create the temp Object and try add to file not sure about how I have Serialization set up if it will work with just Patient or i may need to implement it into the Queue class itself
                     /*Side note figured it out i Would need to make the make the PQPatient class Serializable*/
@@ -214,10 +306,10 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 System.out.println(e);
                 JOptionPane.showMessageDialog(null, "Age must be a number");
             }
-            // Checking text and returning priority based on that
-            if(priorityTf.getText().equalsIgnoreCase("high")){
+            // Checking RadioButtons and returning priority based on that
+            if(urgentRBtn.isSelected()){
                 priority = 1;
-            }else if(priorityTf.getText().equalsIgnoreCase("medium")){
+            }else if(mediumRBtn.isSelected()){
                 priority = 2;
             }else{
                 priority = 3;
@@ -233,7 +325,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             //Adding to patient record
             allPatients.add(temp);
 //            Adding to priority Queue
-            priorityQueue.enqueue(priority,age,hospitalWard,temp);
+            priorityQueue.add(priority,age,hospitalWard,temp);
             System.out.println(temp.printPatient());
             clearFields();
             displayTa.append("Patient successfully added\n");
@@ -247,24 +339,33 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 oStream = new ObjectOutputStream(fStream);
                    // I figured this out by playing around  in the below loadFile method where I needed to cast the ArrayList as type class, not too sure why it wouldnt just write as (PriorityQueue) but it now successfully reads and writes 
                    //** Now understand that it is type casting 
-                oStream.writeObject((PQPatient)(priorityQueue));
                 oStream.writeObject(allPatients);
-                
+                oStream.close();
             }catch(IOException e){
                         System.out.println(e);
                         }
-            
+            try{
+                f = new File("priority.dat");
+                fStream = new FileOutputStream(f);
+                oStream = new ObjectOutputStream(fStream);
+                   // I figured this out by playing around  in the below loadFile method where I needed to cast the ArrayList as type class, not too sure why it wouldnt just write as (PriorityQueue) but it now successfully reads and writes 
+                   //** Now understand that it is type casting 
+                oStream.writeObject(priorityQueue);
+                oStream.close();
+            }catch(IOException e){
+                        System.out.println(e);
+                        }
         }
     }//GEN-LAST:event_addPatientBtnActionPerformed
     private void clearFields(){
         nameTf.setText("");
         ageTf.setText("");
-        priorityTf.setText("");
+        lowRBtn.setSelected(true);
         gpNameTf.setText("");
         hospitalCheck.setSelected(false);
     }
     
-    private void loadFile(){
+    private void loadPatientHistory(){
         // This will be a method to retrieve all Patients for the queue
         File f;
         FileInputStream fStream;
@@ -274,8 +375,40 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             fStream = new FileInputStream(f);
             oStream = new ObjectInputStream(fStream);
             // Had trouble with this here was trying arrayList casting but needed to remove     Serialization  from just patient and read it as the class it actually belongs
+             allPatients = (ArrayList<Patient>)oStream.readObject();
+            oStream.close();
+        }catch(IOException | ClassNotFoundException e){
+            System.out.println(e);
+        }
+    }
+    private void loadPatientPriority(){
+        // This will be a method to retrieve all Patients for the queue
+        File f;
+        FileInputStream fStream;
+        ObjectInputStream oStream;
+        try{
+            f = new File("priority.dat");
+            fStream = new FileInputStream(f);
+            oStream = new ObjectInputStream(fStream);
+            // Had trouble with this here was trying arrayList casting but needed to remove     Serialization  from just patient and read it as the class it actually belongs
             priorityQueue = (PQPatient)oStream.readObject();
-            allPatients = (ArrayList<Patient>)oStream.readObject();
+            oStream.close();
+        }catch(IOException | ClassNotFoundException e){
+            System.out.println(e);
+        }
+    }
+    private void loadNoShowers(){
+        // This will be a method to retrieve all Patients for the queue
+        File f;
+        FileInputStream fStream;
+        ObjectInputStream oStream;
+        try{
+            f = new File("noShows.dat");
+            fStream = new FileInputStream(f);
+            oStream = new ObjectInputStream(fStream);
+            // Had trouble with this here was trying arrayList casting but needed to remove     Serialization  from just patient and read it as the class it actually belongs
+            theNoShowers = (StackNoShows)oStream.readObject();
+            oStream.close();
         }catch(IOException | ClassNotFoundException e){
             System.out.println(e);
         }
@@ -285,10 +418,6 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         displayTa.append(priorityQueue.displayQ());
         System.out.println(priorityQueue.displayQ());
     }//GEN-LAST:event_displayBtnActionPerformed
-
-    private void priorityTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priorityTfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priorityTfActionPerformed
 
     private void displayAllPatientsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAllPatientsBtnActionPerformed
         // TODO add your handling code here:
@@ -305,6 +434,99 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             displayTa.append("Nothing to currently display directory is empty");
         }
     }//GEN-LAST:event_displayAllPatientsBtnActionPerformed
+
+    private void addNoShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoShowActionPerformed
+        // TODO add your handling code here:
+        //This button will not only push to the stack but will also poll/dequeue the PriorityQueue
+        Patient temp = priorityQueue.poll();
+        displayTa.append("Patient removed from queue\n");
+        System.out.println(temp);
+        theNoShowers.push(temp);
+        displayTa.append("Patient Added to NoShowList\n");
+        
+        File f;
+        FileOutputStream fStream;
+        ObjectOutputStream oStream;
+        try{
+            f = new File("priority.dat");
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+        // will write to file 
+            oStream.writeObject(priorityQueue);
+            oStream.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        try{
+            f = new File("noShows.dat");
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+        // will write to file 
+            oStream.writeObject(theNoShowers);
+            oStream.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        
+    }//GEN-LAST:event_addNoShowActionPerformed
+
+    private void peekBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peekBtnActionPerformed
+       displayTa.append("-----------------Peeking----------------\nNext patient in line " + priorityQueue.peek().getName()); 
+    }//GEN-LAST:event_peekBtnActionPerformed
+
+    private void noShowLastFiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noShowLastFiveButtonActionPerformed
+        // TODO add your handling code here:
+        String concat = theNoShowers.lastFiveNoShows(0);
+        displayTa.append(concat);
+        
+    }//GEN-LAST:event_noShowLastFiveButtonActionPerformed
+
+    private void emptyStackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyStackBtnActionPerformed
+        // TODO add your handling code here:
+        String decision = JOptionPane.showInputDialog(null, "This cannot be undone if you are sure type `Yes` ");
+        if (decision.equalsIgnoreCase("yes")) {
+            displayTa.append("\n---------Popping--------------\n");
+            String concat = theNoShowers.emptyStack();
+            displayTa.append(concat);
+            // File writing update
+            File f;
+            FileOutputStream fStream;
+            ObjectOutputStream oStream;
+            try {
+                f = new File("noShows.dat");
+                fStream = new FileOutputStream(f);
+                oStream = new ObjectOutputStream(fStream);
+                // will write to file 
+                oStream.writeObject(theNoShowers);
+                oStream.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+    
+    }//GEN-LAST:event_emptyStackBtnActionPerformed
+
+    private void pollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pollBtnActionPerformed
+        // TODO add your handling code here:
+        displayTa.append("Patient has been seen to " + priorityQueue.peek().getName()+"\n");
+        priorityQueue.poll();
+        displayTa.append("\nPatient was co-operative\nQueue is now " + priorityQueue.size() + " patients long");
+        // File writing update
+        File f;
+        FileOutputStream fStream;
+        ObjectOutputStream oStream;
+        try{
+            f = new File("priority.dat");
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+        // will write to file 
+            oStream.writeObject(priorityQueue);
+            oStream.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        
+    }//GEN-LAST:event_pollBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,21 +564,31 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ArrayListLbl;
+    private javax.swing.JLabel PQLbl;
+    private javax.swing.JLabel StackLbl;
+    private javax.swing.JButton addNoShow;
     private javax.swing.JButton addPatientBtn;
     private javax.swing.JLabel ageLbl;
     private javax.swing.JTextField ageTf;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton displayAllPatientsBtn;
     private javax.swing.JButton displayBtn;
     private javax.swing.JTextArea displayTa;
+    private javax.swing.JButton emptyStackBtn;
     private javax.swing.JLabel gpNameLbl;
     private javax.swing.JTextField gpNameTf;
     private javax.swing.JCheckBox hospitalCheck;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton lowRBtn;
     private javax.swing.JLabel mainTitleLbl;
+    private javax.swing.JRadioButton mediumRBtn;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTf;
-    private javax.swing.JLabel priorityLbl;
-    private javax.swing.JTextField priorityTf;
+    private javax.swing.JButton noShowLastFiveButton;
+    private javax.swing.JButton peekBtn;
+    private javax.swing.JButton pollBtn;
+    private javax.swing.JRadioButton urgentRBtn;
     // End of variables declaration//GEN-END:variables
 }

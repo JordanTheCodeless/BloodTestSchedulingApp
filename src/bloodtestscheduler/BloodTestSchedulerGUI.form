@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -23,55 +27,77 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="mainTitleLbl" min="-2" pref="313" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="nameLbl" max="32767" attributes="0"/>
-                                      <Component id="ageLbl" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="gpNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="gpNameTf" alignment="1" pref="129" max="32767" attributes="0"/>
-                                  <Component id="ageTf" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="priorityTf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nameLbl" max="32767" attributes="0"/>
+                                  <Component id="ageLbl" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ageTf" alignment="1" pref="129" max="32767" attributes="0"/>
                                   <Component id="nameTf" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Component id="hospitalCheck" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="priorityLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="urgentRBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="mediumRBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lowRBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="gpNameLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="gpNameTf" min="-2" pref="143" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pollBtn" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="addPatientBtn" max="32767" attributes="0"/>
+                                      <Component id="peekBtn" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="displayBtn" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="displayAllPatientsBtn" min="-2" pref="179" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="noShowLastFiveButton" max="32767" attributes="0"/>
+                                  <Component id="addNoShow" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="emptyStackBtn" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="mainTitleLbl" min="-2" pref="313" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="PQLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="ArrayListLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="StackLbl" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="414" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addPatientBtn" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Component id="displayAllPatientsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
               </Group>
-              <EmptySpace pref="106" max="32767" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,28 +119,48 @@
                   <Component id="ageLbl" min="-2" max="-2" attributes="0"/>
                   <Component id="ageTf" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="urgentRBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mediumRBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lowRBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="priorityLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="priorityTf" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="gpNameLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="gpNameTf" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="gpNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="gpNameTf" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PQLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ArrayListLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="StackLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="displayAllPatientsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="noShowLastFiveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pollBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="displayBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="addNoShow" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="emptyStackBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="displayBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="displayAllPatientsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="peekBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="156" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -154,11 +200,6 @@
         <Property name="text" type="java.lang.String" value="Age :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="priorityLbl">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Priority :"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="gpNameLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="GP Name :"/>
@@ -167,11 +208,6 @@
     <Component class="javax.swing.JTextField" name="nameTf">
     </Component>
     <Component class="javax.swing.JTextField" name="ageTf">
-    </Component>
-    <Component class="javax.swing.JTextField" name="priorityTf">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="priorityTfActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="gpNameTf">
     </Component>
@@ -204,10 +240,98 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAllPatientsBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="addNoShow">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add to no show"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNoShowActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="noShowLastFiveButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show Previous No Shows"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noShowLastFiveButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="peekBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Peek Next Patient"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="peekBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="mediumRBtn">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Medium"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="lowRBtn">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Low"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="urgentRBtn">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Urgent"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Priority : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="PQLbl">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="14" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="PriorityQueue :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ArrayListLbl">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="14" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ArrayList :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="StackLbl">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="14" style="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Stack:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="emptyStackBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Empty No Show Stack"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emptyStackBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="pollBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Take next Patient"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pollBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

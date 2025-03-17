@@ -4,13 +4,14 @@
  */
 package bloodtestscheduler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author jordancarthy
  */
-public class StackNoShows implements StackInterface {
+public class StackNoShows implements StackInterface, Serializable{
 
     // Will make it an array list of type Patient
     public ArrayList<Patient> noShowers;
@@ -37,10 +38,11 @@ public class StackNoShows implements StackInterface {
     }
 
     @Override
-    public void push(Object newItem) {
-        noShowers.add(0, (Patient) newItem);
+    public void push(Patient newItem) {
+        noShowers.add(0, newItem);
     }
 
+ 
     @Override
     public Object pop() {
         if (!noShowers.isEmpty()) {
@@ -50,24 +52,29 @@ public class StackNoShows implements StackInterface {
         }
     }
 
-    public void emptyStack() {
+    public String emptyStack() {
+        String concat ="";
         while (!noShowers.isEmpty()) {
-            System.out.println("Popping" + pop());
+           concat +=  "Popping " + noShowers.get(0).getName() + "\n";
+           pop();
 
         }
+        return concat;
+        
     }
-    
-    // This will be my recursive method with the pop function this will help show the last 5 noShows in the main app
-    @Override
-    public Object recursivePop(int n) {
-        if (n <= 0 || noShowers.isEmpty()) { // first base case
-            return null;
+    public String lastFiveNoShows(int n){
+         String concat;
+        // Base cases 
+        if(noShowers.isEmpty() || n >= noShowers.size() || n >=5){
+            return "";
+        }else {
+           concat = noShowers.get(n).printPatient() + lastFiveNoShows(n+1);
+             
         }
-        if (n == 1) { // n is 1 we can only pop one
-            return noShowers.remove(0);
-        }
-        noShowers.remove(0);
-        return recursivePop(n - 1);
+        return concat;
     }
+
+   
+   
 
 }
