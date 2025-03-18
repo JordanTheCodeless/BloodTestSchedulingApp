@@ -82,6 +82,6 @@ public class Patient implements Serializable {
     }
     
 public String basicPrint(){
-    return "Patient : " + name + "\nPriority : " + priorityToString() + "\nGP : " + gpName + "\n";
+    return "Patient : " + name + "\nAge : " + age + "\nGP : " + gpName + "\n";
 }
 }

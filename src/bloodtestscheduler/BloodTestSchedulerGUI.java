@@ -276,6 +276,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void addPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientBtnActionPerformed
         // Checking inputs first and type checking for smoothness
+        // boolean to check if all ok before submission
+        
         if(nameTf.getText().isEmpty() || ageTf.getText().isEmpty() || gpNameTf.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Dont leave any fields empty");
         
@@ -290,6 +292,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             }catch(NumberFormatException e){
                 System.out.println(e);
                 JOptionPane.showMessageDialog(null, "Age must be a number");
+                clearFields();
+                return;
             }
             // Checking RadioButtons and returning priority based on that
             if(urgentRBtn.isSelected()){
@@ -313,7 +317,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             priorityQueue.add(priority,age,hospitalWard,temp);
             System.out.println(temp.printPatient());
             clearFields();
-            displayTa.append("Patient successfully added\n");
+            displayTa.append("\nPatient successfully added\n");
             // adding to file implementation
             File f;
             FileOutputStream fStream;
@@ -414,15 +418,18 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             list += temp.basicPrint() + "\n-------------------------\n";
             
         }
-        displayTa.append(list);
+        displayTa.setText(list);
         
         }else{
-            displayTa.append("Nothing to currently display directory is empty");
+            displayTa.setText("\nNothing to currently display directory is empty\n");
         }
     }//GEN-LAST:event_displayAllPatientsBtnActionPerformed
 
     private void peekBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peekBtnActionPerformed
-       displayTa.append("-----------------Peeking----------------\nNext patient in line " + priorityQueue.peek().getName()+"\n"); 
+       if(!priorityQueue.isEmpty()){displayTa.append("-----------------Peeking----------------\nNext patient in line " + priorityQueue.peek().getName()+"\n"); 
+}else{
+           displayTa.setText("No patient in queue");
+       }
     }//GEN-LAST:event_peekBtnActionPerformed
 
     private void noShowLastFiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noShowLastFiveButtonActionPerformed
@@ -437,6 +444,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void emptyStackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyStackBtnActionPerformed
         // TODO add your handling code here:
+        if(!theNoShowers.isEmpty()){
         String decision = JOptionPane.showInputDialog(null, "This cannot be undone if you are sure type `Yes` ");
         if (decision.equalsIgnoreCase("yes")) {
             displayTa.append("\n---------Popping--------------\n");
@@ -456,6 +464,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println(e);
             }
+        }}else{
+            displayTa.setText("No one to pop !");
         }
     
     }//GEN-LAST:event_emptyStackBtnActionPerformed
@@ -465,7 +475,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         File f;
         FileOutputStream fStream;
         ObjectOutputStream oStream;
-        
+        if(priorityQueue.isEmpty()){
+            displayTa.setText("No Patient to process");
+        }else{
         
         String decision = JOptionPane.showInputDialog(null,priorityQueue.peek().printPatient() + "\nHas the user showed for their appointment ?\n`Yes` or `No` ?");
         if(decision.equalsIgnoreCase("yes")){
@@ -485,7 +497,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             System.out.println(e);
         }
         }else if(decision.equalsIgnoreCase("no")){
-            displayTa.append("\nPatient " + priorityQueue.peek().getName() + "has been added to No show");
+            displayTa.append("\nPatient " + priorityQueue.peek().getName() + " has been added to No show");
            Patient temp = priorityQueue.poll();// remove from queue and add to no shows
            theNoShowers.push(temp);
            try{
@@ -511,6 +523,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         else{
                  decision = JOptionPane.showInputDialog(null,priorityQueue.peek().printPatient() + "\nHas the user showed for their appointment ?\n`Yes` or `No` ?"); 
                 }
+        }
     }//GEN-LAST:event_pollBtnActionPerformed
 
     /**

@@ -69,7 +69,7 @@ public class StackNoShows implements StackInterface, Serializable {
         if (noShowers.isEmpty() || n >= noShowers.size() || n >= 5 || noShowers.get(n) == null) {
             concat = "";
         } else {
-            concat = noShowers.get(n).printPatient() + "---------- no show " + n + "-------" + lastFiveNoShows(n + 1);
+            concat = "\n---------- no show " + (n+1) + "-------\n"+ noShowers.get(n).printPatient() + lastFiveNoShows(n + 1);
 
         }
         return concat;
